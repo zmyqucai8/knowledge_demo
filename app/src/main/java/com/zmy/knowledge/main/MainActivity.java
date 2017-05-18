@@ -1,0 +1,270 @@
+package com.zmy.knowledge.main;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+
+import android.support.v7.widget.Toolbar;
+import android.view.GestureDetector;
+import android.view.KeyEvent;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.zmy.knowledge.R;
+import com.zmy.knowledge.SettingActivity;
+import com.zmy.knowledge.base.app.BaseActivity;
+import com.zmy.knowledge.base.app.ViewHolder;
+import com.zmy.knowledge.main.fragment.DemosListFragment;
+
+import com.zmy.knowledge.main.fragment.SitesListFragment;
+import com.zmy.knowledge.main.fragment.HomeListFragment;
+import com.zmy.knowledge.utlis.AUtils;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+/**
+ * 这是一个集合很多demo的demo
+ */
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    private int mCurrentPosition = 0;
+    private HomeListFragment mFragment1;
+    private DemosListFragment mFragment2;
+    private SitesListFragment mFragment3;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initViews(ViewHolder holder, View root) {
+        initMenu(holder);
+        initViewPager(holder);
+        initPush();
+    }
+
+
+    /*初始化推送*/
+    private void initPush() {
+        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, "PbbGBe5pfzNYjkyf3o8eTU4V");
+    }
+
+
+    // 初始化菜单(包括侧边栏菜单和顶部菜单选项)
+    private void initMenu(ViewHolder holder) {
+        Toolbar toolbar = holder.get(R.id.toolbar);
+        toolbar.setLogo(R.mipmap.logo);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.logo_withe);
+        DrawerLayout drawer = holder.get(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        // 双击 666
+        final GestureDetector detector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                quickToTop();   // 快速返回头部
+                return super.onDoubleTap(e);
+            }
+        });
+
+        toolbar.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                detector.onTouchEvent(event);
+                return false;
+            }
+        });
+
+        toolbar.setOnClickListener(this);
+
+        holder.setOnClickListener(this, R.id.fab);
+
+        loadMenuData();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_post) {
+
+            AUtils.showToast("我的帖子");
+        } else if (id == R.id.nav_collect) {
+
+            AUtils.showToast("我的收藏");
+
+        } else if (id == R.id.nav_about) {
+            AUtils.showToast("关于");
+        } else if (id == R.id.nav_setting) {
+//            AUtils.showToast("设置");
+            startActivity(new Intent(this, SettingActivity.class));
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                quickToTop();
+                break;
+        }
+
+    }
+
+    // 快速返回顶部
+    private void quickToTop() {
+        switch (mCurrentPosition) {
+            case 0:
+
+                mFragment1.quickToTop();
+                break;
+            case 1:
+                mFragment2.quickToTop();
+                break;
+            case 2:
+                mFragment3.quickToTop();
+                break;
+        }
+    }
+
+    // 加载侧边栏菜单数据(与用户相关的)
+    private void loadMenuData() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        ImageView avatar = (ImageView) headerView.findViewById(R.id.nav_header_image);
+        TextView username = (TextView) headerView.findViewById(R.id.nav_header_name);
+        TextView tagline = (TextView) headerView.findViewById(R.id.nav_header_tagline);
+
+//        username.setText("(未登录)");
+//        tagline.setText("点击头像登录");
+//        avatar.setImageResource(R.mipmap.ic_launcher);
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AUtils.showToast("cloud");
+//                    openActivity(LoginActivity.class);
+            }
+        });
+    }
+
+
+    private void initViewPager(ViewHolder holder) {
+        ViewPager mViewPager = holder.get(R.id.view_pager);
+        TabLayout mTabLayout = holder.get(R.id.tab_layout);
+        mViewPager.setOffscreenPageLimit(3); // 防止滑动到第三个页面时，第一个页面被销毁
+
+        mFragment1 = HomeListFragment.newInstance();
+        mFragment2 = DemosListFragment.newInstance();
+        mFragment3 = SitesListFragment.newInstance();
+
+        mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            String[] types = {"Home", "DEMO", "TIPS"};
+
+            @Override
+            public Fragment getItem(int position) {
+                if (position == 0)
+                    return mFragment1;
+                if (position == 1)
+                    return mFragment2;
+                if (position == 2)
+                    return mFragment3;
+                return mFragment3;
+            }
+
+            @Override
+            public int getCount() {
+                return 3;
+            }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return types[position];
+            }
+        });
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mCurrentPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+//        mCurrentPosition = mConfig.getMainViewPagerPosition();
+        mViewPager.setCurrentItem(0);
+
+        mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        //返回键的监听
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            exitBy2Click();
+            return true;
+        }
+        return false;
+    }
+
+
+    boolean isExit = false;//返回的tag
+
+    /**
+     * 再按一次返回桌面
+     */
+    private void exitBy2Click() {
+        Timer tExit = null;
+        if (isExit == false) {
+            isExit = true; // 准备退出
+            AUtils.showToast("再按一次返回桌面");
+            tExit = new Timer();
+            tExit.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false; // 取消退出
+                }
+            }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+
+        } else {
+
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+        }
+    }
+}

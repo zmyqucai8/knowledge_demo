@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#DB3937</color>
+    <color name="diy_red">#DB3937</color>
+    <color name="diy_red2">#cc6f6e</color>
+    <color name="diy_gray">#C8C8CE</color>
+    <color name="diy_gray2">#999999</color>
+    <color name="diy_black">#4d4d4d</color>
+    <color name="diy_black2">#000000</color>
+    <color name="diy_white">#ffffff</color>
+    <color name="diy_white_bg">#F0F0F0</color>
+    <color name="blue">#3daeb1</color>
+    <color name="blue2">#94afaf</color>
+    <color name="white">#ffffffff</color>
+    <color name="graywhite">#F5F5F5</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#E1423C</color>
+    <color name="translucence">#506050</color>
+    <color name="bg_gray">#e2e2e2</color>
+    <color name="green">#65e17b</color>
+</resources>

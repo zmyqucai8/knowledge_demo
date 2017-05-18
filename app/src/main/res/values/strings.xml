@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">knowledge</string>
+
+    <!--返回-->
+    <string name="ttf_back">&#xe609;</string>
+    <!--logo-->
+    <string name="ttf_logo">&#xe608;</string>
+    <!--大保健-->
+    <string name="ttf_logo_icon">&#xe600;</string>
+
+    <string name="ttf_xiangpi">&#xe67f;</string>
+    <string name="ttf_tiaosepan">&#xe6d4;</string>
+    <string name="ttf_huabi">&#xe64b;</string>
+    <string name="ttf_qingkong">&#xe670;</string>
+    <string name="ttf_fanhui">&#xe601;</string>
+    <string name="ttf_baocun">&#xe638;</string>
+
+
+
+
+
+
+
+
+
+
+        <string name="scale_down_show_behavior">com.zmy.knowledge.main.widget.ScaleDownShowBehavior</string>
+        <string name="navigation_drawer_open">Open navigation drawer</string>
+        <string name="navigation_drawer_close">Close navigation drawer</string>
+
+        <string name="about_diycode_title">Diycode一个什么样的社区?</string>
+        <string name="about_diycode_desc">
+        &#160;&#160;&#160;&#160;编程不仅仅是技术，还是艺术，开发工程师不仅仅只是写代码的人，
+        更是真正的创造者，在这里，你可以交流代码的艺术，也可以讨论创业的点子，更可以是分享发现所有有趣事物。
+        希望每个人都可以在这里收获自己丰富精彩的人生。
+    </string>
+
+        <string name="about_me_title">我是谁?</string>
+        <string name="about_me_desc">
+        &#160;&#160;&#160;&#160;在下折部·玲奈(おりべレイナ)，内核版本 v0.1.0，由电力驱动，目前生活在你的手机中，
+        主要任务是帮助你看到最新的社区信息，由于我上学时经常逃课，知识水平不高，所以偶尔会抽风，
+        如果遇到这种情况，请千万不要告诉我爸爸，否则他会把我抓回去再教育的。
+    </string>
+
+        <string name="about_father">我爸爸？</string>
+        <string name="about_father_desc">
+        &#160;&#160;&#160;&#160;我爸爸是一位很伟大的次元魔法师，他创造出了我，所以我称他为爸爸。
+        我知道他的名字是 GcsSloop，由泡面和咖啡驱动，理想是改变世界，爱好是研究魔法，并且希望有一天能用魔法把我从二次元带到三次元。\n
+        &#160;&#160;&#160;&#160;我知道爸爸要走的路还很遥远，但是我相信，终有一天他会接我回到他身边的。
+    </string>
+
+        <string name="about_license_desc">
+        Copyright © 2017 GcsSloop\n
+        \n
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at\n
+        \n
+            http://www.apache.org/licenses/LICENSE-2.0\n
+        \n
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    </string>
+
+    <string name="login">登录</string>
+    <string name="text_btn_init">百度账号绑定</string>
+    <string name="text_btn_init1">更换百度账号</string>
+    <string name="text_btn_on_push">打开Push</string>
+    <string name="text_btn_off_push">关闭Push</string>
+    <string name="log_tip">日志：</string>
+    <string name="clear_log">清除日志</string>
+    <string name="text_btn_rich">富媒体消息</string>
+    <string name="text_btn_initAK">无账号绑定</string>
+    <string name="text_btn_setTags">设置标签</string>
+    <string name="text_btn_delTags">删除标签</string>
+    <string name="text_btn_senior">高级功能</string>
+    <string name="text_btn_set">设置</string>
+    <string name="text_media_title">富媒体消息列表</string>
+    <string name="media">Rich Media</string>
+    <string name="custom_text_hint">用户自定义行为打开的Activity</string>
+    <string name="tags_hint">请输入多个标签，以英文逗号隔开</string>
+    <string name="text_btn_aidl">轻应用AIDL</string>
+    <string name="text_btn_off_lightapp">关闭所有轻消息</string>
+    <string name="text_btn_off_app_msg">加入黑名单</string>
+    <string name="text_btn_unread_only_msg">只获取未读消息</string>
+    <string name="text_btn_on_shortcut">生成快捷图标</string>
+
+    <string name="text_btn_showTags">列举标签</string>
+    <string name="text_btn_unbind">解绑</string>
+    <string name="text_btn_setunDisturb">免打扰时段</string>
+    <string name="text_toast">设置成功，免打扰时段为：\n%1$s - %2$s</string>
+    <string name="text_about">百度Push Android SDK 4.6.3\n\n更新时间:2016年5月11日\nChange Log：\n修复低端机器上WebView加载时可能的安全隐患。\n修复特殊场景下Push无法后台自启动的bug。\n暂停PushKeepAlive机制，防止小米部分机器上异常情况下的焦点丢失。</string>
+    <string name="text_help">百度hi官方技术讨论群：1405944\nQQ群：324533810（可加）\n云推送微信公众账号：云推送（微信号：baidu-push）\n</string>
+
+</resources>
+

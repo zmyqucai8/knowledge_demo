@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lib.homhomlib.design.SlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:sliding_mode="top"
+    app:background_view="@layout/view_bg">
+
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+
+        android:id="@+id/ll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.zmy.knowledge.view.MyActionBar
+            android:id="@+id/action_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"></com.zmy.knowledge.view.MyActionBar>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_check"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/item_select">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="检查新版本" />
+
+            <TextView
+                android:id="@+id/tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/diy_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_delete"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/item_select">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="清除缓存" />
+
+            <TextView
+                android:id="@+id/tv_right_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/diy_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dz"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/item_select">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="给我一个赞好吗" />
+
+            <TextView
+                android:id="@+id/tv_right_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/diy_gray" />
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@color/red"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_view"
+        android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+</lib.homhomlib.design.SlidingLayout>
