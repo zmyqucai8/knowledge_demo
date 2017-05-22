@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zmy.knowledge">
+
+    <!--读取手机联系人-->
+    <!-- 读联系人权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 读联系人权限 -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
     <!-- Push service 运行需要的权限 -->
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,6 +26,12 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
     <!-- 适配Android N系统必需的ContentProvider写权限声明，写权限包含应用包名-->
     <uses-permission android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.zmy.knowledge" />
     <permission
@@ -32,13 +47,23 @@
         android:roundIcon="@mipmap/icon_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity"
+        <activity
+            android:name=".main.MainActivity"
             android:theme="@style/AppThemeMain">
 
         </activity>
-
-        <activity android:name=".main.activity.DrawingBoardActivityDemo"/>
-        <activity android:name=".main.activity.CanvasActivityDemo"/>
+<activity android:name=".contacts.ContactsaActivityDemo"/>
+        <activity android:name=".main.activity.DrawingBoardActivityDemo" />
+        <activity
+            android:name=".main.activity.TransparentActivityDemo">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+        <!--    <category android:name="android.intent.category.HOME" />-->
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.MONKEY" />
+        </intent-filter>
+        </activity>
 
         <activity
             android:name=".GuideActivity"

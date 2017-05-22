@@ -106,7 +106,11 @@ public class DrawingBoardView extends SurfaceView implements
         } finally {
             // 对画布内容进行提交
             if (mCanvas != null) {
-                mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+                try {
+                    mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+                } catch (Exception e) {
+
+                }
             }
         }
     }

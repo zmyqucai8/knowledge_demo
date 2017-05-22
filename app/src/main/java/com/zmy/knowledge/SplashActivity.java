@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lzy.okgo.convert.StringConvert;
 import com.zmy.knowledge.base.app.BaseActivity;
 import com.zmy.knowledge.base.app.ViewHolder;
 import com.zmy.knowledge.main.MainActivity;

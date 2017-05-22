@@ -22,6 +22,15 @@
 
 
 
+    <string name="permission_get_accounts_hint">没有此权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_read_phone_hint">没有此权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_call_phone_hint">没有拨打电话权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_camera_hint">没有相机权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_access_fine_location_hint">没有此权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_access_coarse_location_hint">没有此权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_read_external_hint">没有此权限，无法开启这个功能，请开启权限。</string>
+    <string name="permission_white_external_hint">没有读写数据权限，为了正常使用，请开启权限。</string>
+    <string name="permission_recode_audio_hint">没有此权限，无法开启这个功能，请开启权限。</string>
 
 
         <string name="scale_down_show_behavior">com.zmy.knowledge.main.widget.ScaleDownShowBehavior</string>

@@ -92,7 +92,8 @@ public class SPUtils {
      * 获取是否显示过guide
      */
     public static boolean getGuideApp(Context context) {
-        return getPreferences(context).getBoolean("user.guide", false);
+        //TODO 记得这改成fasle啊
+        return getPreferences(context).getBoolean("user.guide", true);
     }
 
     /**

@@ -1,6 +1,9 @@
 package com.zmy.knowledge.main;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -26,11 +29,13 @@ import com.zmy.knowledge.R;
 import com.zmy.knowledge.SettingActivity;
 import com.zmy.knowledge.base.app.BaseActivity;
 import com.zmy.knowledge.base.app.ViewHolder;
+import com.zmy.knowledge.main.activity.TransparentActivityDemo;
 import com.zmy.knowledge.main.fragment.DemosListFragment;
 
 import com.zmy.knowledge.main.fragment.SitesListFragment;
 import com.zmy.knowledge.main.fragment.HomeListFragment;
 import com.zmy.knowledge.utlis.AUtils;
+import com.zmy.knowledge.utlis.PermissionUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -262,9 +267,73 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         } else {
 
-            Intent intent = new Intent(Intent.ACTION_MAIN, null);
-            intent.addCategory(Intent.CATEGORY_HOME);
+//            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+//            intent.addCategory(Intent.CATEGORY_HOME);
+            Intent intent = new Intent(this, TransparentActivityDemo.class);
             startActivity(intent);
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mFragment2.grant);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 1) {
+            Uri contactData = data.getData();
+            Cursor cursor = managedQuery(contactData, null, null, null,
+                    null);
+            cursor.moveToFirst();
+            String num = this.getContactPhone(cursor);
+            AUtils.showNotification(this, "所选手机号为：" + num,R.id.content_main);
+        }
+    }
+
+
+    private String getContactPhone(Cursor cursor) {
+        // TODO Auto-generated method stub
+        int phoneColumn = cursor
+                .getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER);
+        int phoneNum = cursor.getInt(phoneColumn);
+        String result = "";
+        if (phoneNum > 0) {
+            // 获得联系人的ID号
+            int idColumn = cursor.getColumnIndex(ContactsContract.Contacts._ID);
+            String contactId = cursor.getString(idColumn);
+            // 获得联系人电话的cursor
+            Cursor phone = getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "="
+                            + contactId, null, null);
+            if (phone.moveToFirst()) {
+                for (; !phone.isAfterLast(); phone.moveToNext()) {
+                    int index = phone
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                    int typeindex = phone
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE);
+                    int phone_type = phone.getInt(typeindex);
+                    String phoneNumber = phone.getString(index);
+                    result = phoneNumber;
+//                  switch (phone_type) {//此处请看下方注释
+//                  case 2:
+//                      result = phoneNumber;
+//                      break;
+//
+//                  default:
+//                      break;
+//                  }
+                }
+                if (!phone.isClosed()) {
+                    phone.close();
+                }
+            }
+        }
+        return result;
+    }
+
 }
