@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 import com.zmy.knowledge.base.app.BaseActivity;
 import com.zmy.knowledge.base.app.ViewHolder;
 import com.zmy.knowledge.main.MainActivity;
@@ -14,6 +16,9 @@ import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.LoadingUtlis;
 import com.zmy.knowledge.utlis.SPUtils;
 import com.zmy.knowledge.view.MyActionBar;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by win7 on 2017/5/16.
@@ -74,15 +79,49 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         SPUtils.setUserPhone(this, phone);
         SPUtils.setUserPwd(this, pwd);
         mLoading.showLoading();
-        new Handler().postDelayed(new Runnable() {
+
+        loginHttp();
+
+    }
+
+    private void loginHttp() {
+
+        final String userPhone = SPUtils.getUserPhone(this);
+        final String userPwd = SPUtils.getUserPwd(this);
+        String url = "http://qn.winfreeinfo.com:2234/names.nsf?Login";
+        OkGo.post(url)
+                .tag(this)
+                .params("UserName", "admin")
+                .params("Password", "wf1008").execute(new StringCallback() {
             @Override
-            public void run() {
-                mLoading.hideLoading();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+            public void onSuccess(String s, Call call, Response response) {
+//                Toast.makeText(getApplicationContext(), "登录成功", Toast.LENGTH_SHORT).show();
+                AUtils.log("登录成功");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!TextUtils.isEmpty(userPhone) && !TextUtils.isEmpty(userPwd)) {
+                            //登录状态
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        } else {
+                            //非登录状态， 没有显示过guide
+                            startActivity(new Intent(LoginActivity.this, GuideActivity.class));
+                            finish();
+                        }
+                    }
+                }, 2000);
+
             }
-        }, 5000);
+
+            @Override
+            public void onError(Call call, Response response, Exception e) {
+                super.onError(call, response, e);
+                AUtils.showToast("用户名或密码错误");
+            }
+        });
 
 
     }
+
 }

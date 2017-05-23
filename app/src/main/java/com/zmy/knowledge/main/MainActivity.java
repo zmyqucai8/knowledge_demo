@@ -267,10 +267,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         } else {
 
-//            Intent intent = new Intent(Intent.ACTION_MAIN, null);
-//            intent.addCategory(Intent.CATEGORY_HOME);
-            Intent intent = new Intent(this, TransparentActivityDemo.class);
-            startActivity(intent);
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_HOME);
+//            Intent intent = new Intent(this, TransparentActivityDemo.class);
+//            startActivity(intent);
         }
     }
 

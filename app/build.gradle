@@ -44,4 +44,5 @@ dependencies {
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile 'com.github.sd6352051:NiftyNotification:1.2'
     compile 'homhomlin.lib:sldinglayout:0.9.0'
+
 }

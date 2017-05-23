@@ -41,6 +41,7 @@ import com.zmy.knowledge.main.MainActivity;
 import com.zmy.knowledge.main.activity.TransparentActivityDemo;
 import com.zmy.knowledge.main.activity.DrawingBoardActivityDemo;
 import com.zmy.knowledge.main.adapter.DemoAdapter;
+import com.zmy.knowledge.upload.UploadActivity;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
 
@@ -89,14 +90,13 @@ public class DemosListFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
-
         List<String> mDemo = new ArrayList<>();
         mDemo.add("你画我猜");
         mDemo.add("透明屏幕");
         mDemo.add("手机通讯录");
         mDemo.add("打开手机系统通讯录选择一个电话");
         mDemo.add("查询通讯录");
+        mDemo.add("上传文件");
         mAdapter = new DemoAdapter(mDemo);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -135,6 +135,9 @@ public class DemosListFragment extends BaseFragment {
                         AUtils.log("方法结束时间=" + System.currentTimeMillis());
                         long l1 = System.currentTimeMillis();
                         AUtils.log("方法用时" + (l1 - l));
+                        break;
+                    case 5:
+                        startActivity(new Intent(getContext(), UploadActivity.class));
                         break;
                 }
             }
