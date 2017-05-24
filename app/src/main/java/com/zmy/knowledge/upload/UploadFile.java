@@ -18,25 +18,36 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.UUID;
 
-public class UploadImage {
+public class UploadFile {
     private static final String TAG = "uploadFile";
-    private static final int TIME_OUT = 10 * 10000000; //超时时间
+    private static final int TIME_OUT = 10 * 1000000; //超时时间
     private static final String CHARSET = "utf-8"; //设置编码
     private static final String BOUNDARY = UUID.randomUUID().toString(); //UUID.randomUUID().toString(); //边界标识 随机生成 String PREFIX = "--" , LINE_END = "\r\n";
     private static final String PREFIX = "--";
     private static final String LINE_END = "\n";
     private static final String CONTENT_TYPE = "multipart/form-data"; //内容类型
 
+    //进度回调接口
+    public interface UpProgress {
+        void onUpProgress(float total, float current);
+    }
+
+    //接口变量
+    public static UpProgress mUpProgress;
+
+
     /**
      * android上传文件到服务器
      *
-     * @param file       需要上传的文件
-     * @param requestURL 请求的rul
+     * @param file 需要上传的文件
      * @return 返回响应的内容
      */
-    public static String uploadFile(File file, String requestURL) {
+    public static boolean uploadFile(File file, UpProgress upProgress) {
+        mUpProgress = upProgress;
+        String requestURL = "http://qn.winfreeinfo.com:2234/weboa/km/kmattach.nsf/FileUploadForm?CreateDocument";
         String name = "%%File.48257f7900293e55.86ec149b6a75b27848257a4700542d89.$Body.0.1E6";
         String type = URLConnection.guessContentTypeFromName(file.getName());
+        AUtils.log("文件类型=" + type);
         try {
             URL url = new URL(requestURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -51,13 +62,10 @@ public class UploadImage {
             conn.setRequestProperty("Connection", "keep-alive");
             conn.setRequestProperty("Cookie", AUtils.getCookieValue());
             conn.setRequestProperty("Content-Type", CONTENT_TYPE + ";boundary=" + BOUNDARY);
-
-
             if (file != null) {
                 /** * 当文件不为空，把文件包装并且上传 */
                 OutputStream outputSteam = conn.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(outputSteam);
-
 //                String[] params = {"\"Content-Type\"", "\"Content-Length\""};
 //                String[] values = {type, file.length() + ""};
                 //添加docName,docType,sessionKey,sig参数
@@ -80,17 +88,20 @@ public class UploadImage {
                 sb.append(PREFIX);
                 sb.append(BOUNDARY);
                 sb.append(LINE_END);
-
                 sb.append("Content-Disposition: form-data; name=\"" + name + "\"; filename=" + "\"" + file.getName() + "\"" + LINE_END);
-                sb.append("Content-Type: image/jpg" + LINE_END);
+                sb.append("Content-Type: " + type + LINE_END);
                 sb.append(LINE_END);
                 dos.write(sb.toString().getBytes());
                 //读取文件的内容
                 InputStream is = new FileInputStream(file);
                 byte[] bytes = new byte[1024];
                 int len = 0;
+                long i = 0;
                 while ((len = is.read(bytes)) != -1) {
                     dos.write(bytes, 0, len);
+                    if (mUpProgress != null) {//进度回调
+                        mUpProgress.onUpProgress(file.length() + 0.5f, (i += len) + 0.5f);
+                    }
                 }
                 is.close();
                 //写入文件二进制内容
@@ -112,19 +123,19 @@ public class UploadImage {
                     while ((oneLine = input.readLine()) != null) {
                         response.append(oneLine);
                     }
-                    return response.toString();
+                    return true;
                 } else {
-                    return res + "";
+                    return false;
                 }
             } else {
-                return "file not found";
+                return false;
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            return "failed";
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
-            return "failed";
+            return false;
         }
     }
 

@@ -19,12 +19,7 @@ import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
 
 import java.io.File;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.MediaType;
@@ -95,6 +90,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
                     //上传文件
 //                    uploadFile(path);
                     uploadFile2(path);
+//                    uploadFile3(path);
                 }
                 break;
         }
@@ -126,7 +122,6 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
                             //上传成功
                             text.setText("上传成功");
                             AUtils.showToast("上传成功");
-                            call.request();
                         }
 
                         @Override
@@ -135,9 +130,6 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
                             if (bar.getVisibility() == View.GONE) {
                                 bar.setVisibility(View.VISIBLE);
                             }
-                            AUtils.log("progress=" + progress);
-                            AUtils.log("currentSize=" + currentSize);
-                            AUtils.log("totalSize=" + totalSize);
                             int i = (int) (currentSize / totalSize * 100);
                             bar.setProgress(i);
 //                            text.setText(i + "%");
@@ -154,34 +146,67 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    public void uploadFile2 (String path) {
-        String url = "http://qn.winfreeinfo.com:2234/weboa/km/kmattach.nsf/FileUploadForm?CreateDocument";
-        String name = "%%File.48257f7900293e55.86ec149b6a75b27848257a4700542d89.$Body.0.1E6";
-        initTask(path,url);
+    public void uploadFile2(String path) {
+        initTask(path);
         asyncTask.execute((Object[]) null);
 
-}
+    }
+
     private AsyncTask asyncTask;
-    private void initTask(final String path, final String url){
+
+    private void initTask(final String path) {
         asyncTask = new AsyncTask() {
             @Override
             protected Object doInBackground(Object[] params) {
-                String response = UploadImage.uploadFile(new File(path), url);
+                boolean response = UploadFile.uploadFile(new File(path), new UploadFile.UpProgress() {
+                    @Override
+                    public void onUpProgress(float total, float current) {
+                        publishProgress((int) (current / total * 100));
+                    }
+                });
                 return response;
             }
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-//                urlString = editText.getText().toString();
 //                Toast.makeText(HttpMultiPartTestActivity.this, "开始上传", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
-//                Toast.makeText(UploadActivity.this, (o == null ? "" : o.toString()), Toast.LENGTH_SHORT).show();
+                AUtils.log((boolean) o ? "上传成功" : "上传失败");
+            }
+
+            @Override
+            protected void onProgressUpdate(Object[] values) {
+//                AUtils.log("上传的进度=" + (int) values[0]);
+                if (bar.getVisibility() == View.GONE) {
+                    bar.setVisibility(View.VISIBLE);
+                }
+                text.setText((int) values[0] + "%");
+
             }
         };
+    }
+
+
+    public void uploadFile3(String path) {
+//        String url = "http://qn.winfreeinfo.com:2234/weboa/km/kmattach.nsf/FileUploadForm?CreateDocument";
+        String url = "http://app.xindongai.com/v7/Personal/UploadMemberPhoto";
+        String name = "%%File.48257f7900293e55.86ec149b6a75b27848257a4700542d89.$Body.0.1E6";
+        OkGo.post(url)
+                .isMultipart(true)
+                .headers("appToken", "7444b9b85b5364022ed5895495c2df2cc530fa17bf49aa544f493d5d047891ec99178ad36f6ffe79")
+                .headers("appID", "1005467")
+                .params("MemberID", "1005467")
+                .params("dataType", "common")
+                .params("myPhoto", new File(path)).execute(new StringCallback() {
+            @Override
+            public void onSuccess(String s, Call call, Response response) {
+                AUtils.showToast(s);
+            }
+        });
     }
 }
