@@ -48,7 +48,6 @@ import java.util.ArrayList;
 
 /**
  * 不要侧滑关闭继承BaseActivity
- * <p>
  * 需要侧滑关闭继承MySwipeBackActivity
  */
 public abstract class BaseActivity extends AppCompatActivity {
@@ -204,7 +203,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (list.contains(this)) {
             list.remove(this);
         }
-
     }
 
 

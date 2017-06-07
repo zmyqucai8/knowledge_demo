@@ -154,6 +154,7 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
 
     private AsyncTask asyncTask;
 
+    /*初始化上传task*/
     private void initTask(final String path) {
         asyncTask = new AsyncTask() {
             @Override
@@ -209,4 +210,6 @@ public class UploadActivity extends BaseActivity implements View.OnClickListener
             }
         });
     }
+
+
 }

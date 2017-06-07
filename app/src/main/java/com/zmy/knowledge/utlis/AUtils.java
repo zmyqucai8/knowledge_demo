@@ -430,9 +430,7 @@ public class AUtils {
                 String contactId = cur.getString(idColumn);
                 //获得联系人姓名
                 String disPlayName = cur.getString(displayNameColumn);
-                if ("啊胜".equals(disPlayName)) {
-                    AUtils.log(disPlayName);
-                }
+
                 //查看该联系人有多少个电话号码。如果没有这返回值为0
                 int phoneCount = cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
                 String sort_key = cur.getString(sortKeyColumn);
@@ -580,9 +578,11 @@ public class AUtils {
 
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
+                }else {
+                    String s = Environment.getExternalStorageDirectory() + "/" + split[1];
+                    Log.e("path=",  s);
+                    return s;
                 }
-
-                // TODO handle non-primary volumes
             }
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {

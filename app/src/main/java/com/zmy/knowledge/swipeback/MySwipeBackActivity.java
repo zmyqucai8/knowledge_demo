@@ -14,8 +14,8 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 
 /**
  * Created by win7 on 2017/5/18.
+ * 需要侧滑关闭请继承此activity 不需要则继承BaseActivity
  */
-
 public abstract class MySwipeBackActivity extends BaseActivity implements SwipeBackActivityBase {
     private SwipeBackHelper mHelper;
 

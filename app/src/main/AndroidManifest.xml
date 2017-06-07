@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zmy.knowledge">
-
     <!--读取手机联系人-->
     <!-- 读联系人权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- 读联系人权限 -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-
+    <!--环信-->
+    <!--    如果对生成的apk大小比较敏感，我们建议，仅保留一个ARCH目录。如果使用lite版，建议仅保留armeabi；如果使用音视频版，建议仅保留armeabi-v7a。
+        这样虽然在对应平台执行的速度会降低，但是能有效减小apk的大小。-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <!-- Push service 运行需要的权限 -->
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -64,6 +73,24 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".chat.view.ChatTabActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".chat.ChatListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".chat.ContactListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <!-- 地图 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide" />
+
+        <activity
+            android:name=".chat.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".GuideActivity"
             android:theme="@style/AppThemeFullScreen" />
@@ -82,6 +109,8 @@
         <activity android:name=".SettingActivity" />
 
         <activity android:name=".upload.UploadActivity" />
+        <activity android:name=".main.activity.JsTestActivity" />
+        <activity android:name=".main.activity.SDTestActivity" />
 
         <!-- 此处Receiver名字修改为当前包名路径 -->
         <receiver android:name=".push.PushReceiver">
@@ -147,6 +176,33 @@
             android:exported="true"
             android:protectionLevel="signature"
             android:writePermission="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.zmy.knowledge" />
+
+        <!--环信配置-->
+
+        <!-- 设置环信应用的AppKey -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="1107170524115199#knowledge" />
+        <!-- 声明SDK所需的service SDK核心功能-->
+        <service
+            android:name="com.hyphenate.chat.EMChatService"
+            android:exported="true" />
+        <service
+            android:name="com.hyphenate.chat.EMJobService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- 声明SDK所需的receiver -->
+        <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <!-- 可选filter -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
 
 
     </application>

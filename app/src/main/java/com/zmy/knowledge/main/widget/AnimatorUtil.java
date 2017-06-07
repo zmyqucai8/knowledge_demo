@@ -85,4 +85,6 @@ public class AnimatorUtil {
                 .setListener(viewPropertyAnimatorListener)
                 .start();
     }
+
+
 }
