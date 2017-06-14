@@ -14,8 +14,23 @@
     <string name="ttf_qingkong">&#xe670;</string>
     <string name="ttf_fanhui">&#xe601;</string>
     <string name="ttf_baocun">&#xe638;</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Code</string>
+    <string name="title_pull_to_zoom_list_view">ZoomListView</string>
+    <string name="title_pull_to_zoom_scroll_view">ZoomScrollView</string>
+    <string name="title_pull_to_zoom_recycler_view">ZoomRecyclerView</string>
+    <string name="action_normal">Normal</string>
+    <string name="action_parallax">Parallax</string>
+    <string name="action_show_head">Show Head</string>
+    <string name="action_hide_head">Hide Head</string>
+    <string name="action_disable_zoom">Disable Zoom</string>
+    <string name="action_enable_zoom">Enable Zoom</string>
 
-
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
 
 
 

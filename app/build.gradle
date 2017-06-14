@@ -46,7 +46,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     apt 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.13'
-    compile 'com.lzy.net:okgo:+'
+    compile 'com.lzy.net:okgo:2.1.4'
     compile files('libs/pushservice-5.6.0.30.jar')
     compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
@@ -54,4 +54,10 @@ dependencies {
     compile 'homhomlin.lib:sldinglayout:0.9.0'
     compile project(':easeui')
     compile 'com.android.support:multidex:1.0.1'
+    compile 'com.github.anzaizai:EasySwipeMenuLayout:1.0.2'
+
+    //下拉刷新
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+
+    compile 'com.github.frank-zhu:pullzoomview:1.0.0'
 }

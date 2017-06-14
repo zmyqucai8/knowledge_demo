@@ -24,6 +24,7 @@ package com.zmy.knowledge.main.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -33,16 +34,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zmy.knowledge.R;
 import com.zmy.knowledge.base.app.BaseFragment;
-import com.zmy.knowledge.chat.ChatListActivity;
-import com.zmy.knowledge.chat.ContactListActivity;
 import com.zmy.knowledge.chat.view.ChatTabActivity;
 import com.zmy.knowledge.contacts.ContactBean;
 import com.zmy.knowledge.contacts.ContactsaActivityDemo;
-import com.zmy.knowledge.main.MainActivity;
+import com.zmy.knowledge.main.activity.head.HeadActivity;
 import com.zmy.knowledge.main.activity.JsTestActivity;
 import com.zmy.knowledge.main.activity.SDTestActivity;
 import com.zmy.knowledge.main.activity.TransparentActivityDemo;
@@ -107,12 +107,20 @@ public class DemosListFragment extends BaseFragment {
         mDemo.add("上传文件");
         mDemo.add("聊天功能");
         mDemo.add("JavaScript测试");
-        mDemo.add("小测试");
+        mDemo.add("test server ");
+        mDemo.add("list zoom head");
         mAdapter = new DemoAdapter(mDemo);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        //添加头部
+
+        TextView head = new TextView(getActivity());
+        head.setText("头部哦");
+        head.setPadding(50, 50, 50, 50);
+        head.setBackgroundColor(Color.RED);
+        mAdapter.addHeaderView(head);
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
@@ -156,9 +164,14 @@ public class DemosListFragment extends BaseFragment {
                         break;
                     case 7://:h5测试
                         startActivity(new Intent(getContext(), JsTestActivity.class));
-                        break;       case 8://:sd卡测试
+                        break;
+                    case 8://:sd卡测试
                         startActivity(new Intent(getContext(), SDTestActivity.class));
                         break;
+                    case 9:
+                        startActivity(new Intent(getContext(), HeadActivity.class));
+                        break;
+
                 }
             }
         });
@@ -173,4 +186,8 @@ public class DemosListFragment extends BaseFragment {
     }
 
 
+    //这个是回到顶部
+    public static void main(String args) {
+
+    }
 }

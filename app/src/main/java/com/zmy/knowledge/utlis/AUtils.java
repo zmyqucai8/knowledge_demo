@@ -383,12 +383,12 @@ public class AUtils {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
     }
 
-    public static int index;
+//    public static int index;
 
     public static List<String> getTestData(int count) {
-        int length = index + count;
+//        int length = index + count;
         List<String> mList = new ArrayList<>();
-        for (int i = index; i < length; i++) {
+        for (int i = 0; i < count; i++) {
             mList.add("test item = " + i);
         }
         return mList;

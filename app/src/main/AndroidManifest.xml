@@ -10,7 +10,6 @@
     <!--    如果对生成的apk大小比较敏感，我们建议，仅保留一个ARCH目录。如果使用lite版，建议仅保留armeabi；如果使用音视频版，建议仅保留armeabi-v7a。
         这样虽然在对应平台执行的速度会降低，但是能有效减小apk的大小。-->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -51,7 +50,7 @@
     <application
         android:name=".base.app.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/icon_logo"
+
         android:label="@string/app_name"
         android:roundIcon="@mipmap/icon_logo"
         android:supportsRtl="true"
@@ -73,12 +72,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".chat.view.ChatTabActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity android:name=".chat.ChatListActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity android:name=".chat.ContactListActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".chat.view.ChatTabActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".chat.ChatListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".chat.ContactListActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 地图 -->
         <activity
             android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
@@ -111,6 +113,16 @@
         <activity android:name=".upload.UploadActivity" />
         <activity android:name=".main.activity.JsTestActivity" />
         <activity android:name=".main.activity.SDTestActivity" />
+        <activity android:name=".main.activity.head.HeadActivity" />
+        <activity
+            android:name=".main.activity.head.PullToZoomListActivity"
+            android:theme="@style/HeadTheme" />
+        <activity
+            android:name=".main.activity.head.PullToZoomRecyclerActivity"
+            android:theme="@style/HeadTheme" />
+        <activity
+            android:name=".main.activity.head.PullToZoomScrollActivity"
+            android:theme="@style/HeadTheme" />
 
         <!-- 此处Receiver名字修改为当前包名路径 -->
         <receiver android:name=".push.PushReceiver">

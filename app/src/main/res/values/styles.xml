@@ -34,6 +34,17 @@
 
 
     </style>
+    <style name="HeadTheme" parent="@style/Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="windowActionBar">true</item>
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+
+    </style>
     <!--main页面专用-->
     <style name="AppThemeMain" parent="@style/Theme.AppCompat.Light">
         <!-- Customize your theme here. -->

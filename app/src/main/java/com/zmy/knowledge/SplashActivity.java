@@ -48,7 +48,7 @@ public class SplashActivity extends BaseActivity {
         LinearLayout ll_view = holder.get(R.id.ll_view);
         tv_text.setTypeface(AUtils.getTTF());
         tv_icon.setTypeface(AUtils.getTTF());
-
+//        startActivity("","");
         init();
     }
 
