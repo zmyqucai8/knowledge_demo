@@ -112,14 +112,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.nav_post) {
-
             AUtils.showToast("我的帖子");
         } else if (id == R.id.nav_collect) {
-
             AUtils.showToast("我的收藏");
-
         } else if (id == R.id.nav_about) {
             AUtils.showToast("关于");
         } else if (id == R.id.nav_setting) {
@@ -147,7 +143,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void quickToTop() {
         switch (mCurrentPosition) {
             case 0:
-
                 mFragment1.quickToTop();
                 break;
             case 1:
@@ -166,10 +161,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ImageView avatar = (ImageView) headerView.findViewById(R.id.nav_header_image);
         TextView username = (TextView) headerView.findViewById(R.id.nav_header_name);
         TextView tagline = (TextView) headerView.findViewById(R.id.nav_header_tagline);
-
-//        username.setText("(未登录)");
-//        tagline.setText("点击头像登录");
-//        avatar.setImageResource(R.mipmap.ic_launcher);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -289,7 +280,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     null);
             cursor.moveToFirst();
             String num = this.getContactPhone(cursor);
-            AUtils.showNotification(this, "所选手机号为：" + num,R.id.content_main);
+            AUtils.showNotification(this, "所选手机号为：" + num, R.id.content_main);
         }
     }
 
@@ -336,4 +327,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return result;
     }
 
+    //shibushi juede wo caota henshufu a , name xihuanwoo . kaixin , wo ye hen xihuan ni ya , xiaokeai .
+    //ni zhidao ma , wozhende henxihuanni a ,wo gennijiang o , ni jiu shi yige dashabi ,hahah ,xiaosiwole.
+
+    public static void main(String[] args) {
+    }
 }
