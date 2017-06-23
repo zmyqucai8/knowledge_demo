@@ -60,6 +60,7 @@
             android:theme="@style/AppThemeMain">
 
         </activity>
+        <activity android:name=".webx5.X5TestActivity"/>
         <activity android:name=".contacts.ContactsaActivityDemo" />
         <activity android:name=".main.activity.DrawingBoardActivityDemo" />
         <activity android:name=".main.activity.TransparentActivityDemo">
@@ -216,6 +217,28 @@
             </intent-filter>
         </receiver>
 
+        <!--web x5设置-->
+        <activity
+            android:name=".webx5.FullScreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" >
+        </activity>
+
+        <activity
+            android:name=".webx5.FilechooserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".webx5.BrowserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".webx5.ActivityX5"
+            android:configChanges="orientation|screenSize|keyboardHidden" >
+
+        </activity>
 
     </application>
 

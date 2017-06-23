@@ -16,6 +16,20 @@ package com.zmy.knowledge.chat;
 import com.hyphenate.easeui.EaseConstant;
 
 public class Constant extends EaseConstant {
+
+
+	public static final String HOST = "http://192.168.0.90:8080";
+//    public static final  String HOST="http://192.168.0.90:8080/saas";
+
+	/**
+	 * 主页4个h5页面 url
+	 */
+	public static final String URL_TODO = HOST + "/static/webstatic/mycenter/backlog.html";
+	public static final String URL_WORK = HOST + "/static/webstatic/work/working.html";
+	public static final String URL_CONTACTS = HOST + "/static/webstatic/contacts/address_list.html";
+	public static final String URL_ME = HOST + "/static/webstatic/mycenter/mycenter.html";
+	public static final String URL_LOGIN = HOST + "/static/webstatic/register/login.html";
+
 	public static final String NEW_FRIENDS_USERNAME = "item_new_friends";
 	public static final String GROUP_USERNAME = "item_groups";
 	public static final String CHAT_ROOM = "item_chatroom";

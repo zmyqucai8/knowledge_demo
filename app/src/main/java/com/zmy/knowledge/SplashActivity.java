@@ -117,7 +117,7 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 if (!TextUtils.isEmpty(userPhone) && !TextUtils.isEmpty(userPwd)) {
                     //登录状态
-//                    MainActivity
+//                    ActivityX5
 //                    ChatTabActivity
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();

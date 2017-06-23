@@ -51,6 +51,8 @@ import com.zmy.knowledge.main.adapter.DemoAdapter;
 import com.zmy.knowledge.upload.UploadActivity;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
+import com.zmy.knowledge.webx5.ActivityX5;
+import com.zmy.knowledge.webx5.X5TestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,6 +111,8 @@ public class DemosListFragment extends BaseFragment {
         mDemo.add("JavaScript测试");
         mDemo.add("test server ");
         mDemo.add("list zoom head");
+        mDemo.add("WebX5内核浏览器");
+        mDemo.add("WebX5内核浏览器22222");
         mAdapter = new DemoAdapter(mDemo);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -170,6 +174,12 @@ public class DemosListFragment extends BaseFragment {
                         break;
                     case 9:
                         startActivity(new Intent(getContext(), HeadActivity.class));
+                        break;
+                    case 10:
+                        startActivity(new Intent(getContext(), ActivityX5.class));
+                        break;
+                    case 11:
+                        startActivity(new Intent(getContext(), X5TestActivity.class));
                         break;
 
                 }

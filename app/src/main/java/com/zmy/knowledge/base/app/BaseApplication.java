@@ -24,9 +24,14 @@ package com.zmy.knowledge.base.app;
 
 import android.app.ActivityManager;
 import android.app.Application;
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
@@ -37,7 +42,9 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
+import com.tencent.smtt.sdk.QbSdk;
 import com.zmy.knowledge.chat.PreferenceManager;
+import com.zmy.knowledge.utlis.AUtils;
 
 import java.util.Iterator;
 import java.util.List;
@@ -59,9 +66,35 @@ public class BaseApplication extends Application {
         mContext = this;
         initOKGo();
         initHX();
+        initX5();
     }
 
+    /**
+     * 初始化X5内核
+     */
+    private void initX5() {
+        if (!QbSdk.isTbsCoreInited()) {
+            QbSdk.preInit(getApplicationContext(), null);// 设置X5初始化完成的回调接口
+        }
+        //预加载x5内核
+        QbSdk.initX5Environment(getApplicationContext(), new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //初始化完成回调
+                AUtils.showToast("X5内核初始化" + (arg0 ? "成功" : "失败"));
+                AUtils.log("X5内核初始化" + (arg0 ? "成功" : "失败"));
+            }
 
+            @Override
+            public void onCoreInitFinished() {
+                // TODO Auto-generated method stub
+                AUtils.log("X5内核初始化 失败");
+            }
+        });
+    }
+
+    // x5 init service
 
     /**
      * 初始化环信
@@ -84,7 +117,7 @@ public class BaseApplication extends Application {
 
         //初始化
         boolean init = EaseUI.getInstance().init(mContext, options);
-        if(init){
+        if (init) {
             EMClient.getInstance().setDebugMode(true);
             PreferenceManager.init(mContext);
         }
