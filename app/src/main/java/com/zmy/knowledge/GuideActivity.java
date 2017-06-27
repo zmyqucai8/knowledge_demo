@@ -12,7 +12,7 @@ import com.zmy.knowledge.utlis.SPUtils;
 
 
 /**
- * Created by win7 on 2017/5/16.
+ * Created by win7 on 2017/5/16   港澳通行证，
  */
 
 public class GuideActivity extends BaseActivity {
