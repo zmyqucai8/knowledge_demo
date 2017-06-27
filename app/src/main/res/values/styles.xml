@@ -23,7 +23,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">@color/blue</item>

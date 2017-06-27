@@ -42,6 +42,7 @@ import com.zmy.knowledge.base.app.BaseFragment;
 import com.zmy.knowledge.chat.view.ChatTabActivity;
 import com.zmy.knowledge.contacts.ContactBean;
 import com.zmy.knowledge.contacts.ContactsaActivityDemo;
+import com.zmy.knowledge.main.activity.ZhuanChangActivity;
 import com.zmy.knowledge.main.activity.head.HeadActivity;
 import com.zmy.knowledge.main.activity.JsTestActivity;
 import com.zmy.knowledge.main.activity.SDTestActivity;
@@ -113,6 +114,7 @@ public class DemosListFragment extends BaseFragment {
         mDemo.add("list zoom head");
         mDemo.add("WebX5内核浏览器");
         mDemo.add("WebX5内核浏览器22222");
+        mDemo.add("5.0 之前的转场动画");
         mAdapter = new DemoAdapter(mDemo);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -180,6 +182,9 @@ public class DemosListFragment extends BaseFragment {
                         break;
                     case 11:
                         startActivity(new Intent(getContext(), X5TestActivity.class));
+                        break;
+                    case 12:
+                        startActivity(new Intent(getContext(), ZhuanChangActivity.class));
                         break;
 
                 }

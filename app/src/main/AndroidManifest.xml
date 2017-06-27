@@ -59,6 +59,8 @@
             android:name=".main.MainActivity"
             android:theme="@style/AppThemeMain">
 
+
+
         </activity>
         <activity android:name=".webx5.X5TestActivity"/>
         <activity android:name=".contacts.ContactsaActivityDemo" />
@@ -72,6 +74,9 @@
                 <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".main.activity.ZhuanChangActivity"/>
+        <activity android:name=".main.activity.ZhuanChangActivity2"/>
 
         <activity
             android:name=".chat.view.ChatTabActivity"

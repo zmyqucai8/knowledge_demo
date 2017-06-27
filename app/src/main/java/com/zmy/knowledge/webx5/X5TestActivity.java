@@ -9,7 +9,6 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.zmy.knowledge.R;
 import com.zmy.knowledge.base.app.BaseActivity;
 import com.zmy.knowledge.base.app.ViewHolder;
-import com.zmy.knowledge.chat.Constant;
 import com.zmy.knowledge.utlis.AUtils;
 
 /**
@@ -26,13 +25,11 @@ public class X5TestActivity extends BaseActivity {
 
     @Override
     protected void initViews(ViewHolder holder, View root) {
-
         String url = "file:///android_asset/webpage/hitTestResult.html";
         mWebView = holder.get(R.id.mWebView);
         mWebView.loadUrl(url);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -41,11 +38,13 @@ public class X5TestActivity extends BaseActivity {
             }
         });
 
-
         if (mWebView.getX5WebViewExtension() != null) {
             AUtils.showToast("X5内核 版本=" + QbSdk.getTbsVersion(this));
             AUtils.log("X5内核 版本=" + QbSdk.getTbsVersion(this));
         }
-
     }
+
+
+        //测试的方法写在这里，
 }
+
