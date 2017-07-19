@@ -40,18 +40,30 @@ public class ZhuanChangActivity2 extends MySwipeBackActivity {
         return false;
     }
 
-    public boolean 女朋友绿了吗;
-
     /**
      * 这里是一个测试的方法 。 明天转区
      */
     public void test() {
-        if (女朋友绿了吗) {
-            Toast.makeText(this, "绿了啊", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "没绿啊", Toast.LENGTH_LONG).show();
-        }
 
+        //和你在一起还是挺开心的，但是怎么说呢，其实我能接受，但是没必要啊， 事情都发展到这一步了
+        //我炮也约了，还能怎么办，哈哈哈，要么分手老死不相往来，要么和好双宿双飞。
+        //我现在都不想理她 ，爱咋想咋想，拉几把倒
+        //静态方法 静态类
+        //受不了异地恋
+        //也不想去改变/
+        //na wo zai zheli ceshi guaji hoao l ..
+    }
+
+
+    public void testGreenMZ() {
+        String rbq;
+        String cnm;
+        String cnxm;
+        String lll;
+        String 污泥吗的;
+        String 如果不是那镜子, 不像你, 不藏秘密;
+        String 我嘟的一声切的比你说分手彻底;
+        String 泪湿的衣洗干净洗干净;
 
     }
 

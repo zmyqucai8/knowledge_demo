@@ -29,10 +29,9 @@ import com.zmy.knowledge.R;
 import com.zmy.knowledge.SettingActivity;
 import com.zmy.knowledge.base.app.BaseActivity;
 import com.zmy.knowledge.base.app.ViewHolder;
-import com.zmy.knowledge.main.activity.TransparentActivityDemo;
 import com.zmy.knowledge.main.fragment.DemosListFragment;
 
-import com.zmy.knowledge.main.fragment.SitesListFragment;
+import com.zmy.knowledge.main.fragment.GithubListFragment;
 import com.zmy.knowledge.main.fragment.HomeListFragment;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
@@ -48,7 +47,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private int mCurrentPosition = 0;
     private HomeListFragment mFragment1;
     private DemosListFragment mFragment2;
-    private SitesListFragment mFragment3;
+    private GithubListFragment mFragment3;
 
     @Override
     protected int getLayoutId() {
@@ -178,7 +177,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         mFragment1 = HomeListFragment.newInstance();
         mFragment2 = DemosListFragment.newInstance();
-        mFragment3 = SitesListFragment.newInstance();
+        mFragment3 = GithubListFragment.newInstance();
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             String[] types = {"Home", "DEMO", "TIPS"};

@@ -3,6 +3,7 @@
 
     <item android:drawable="@color/graywhite" android:state_pressed="true" />
     <item android:drawable="@color/graywhite" android:state_focused="true" />
+    <item android:drawable="@color/graywhite" android:state_checked="true" />
     <item android:drawable="@color/white" />
 
 </selector>

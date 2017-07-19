@@ -23,19 +23,19 @@
 package com.zmy.knowledge.main.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.MultiAutoCompleteTextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zmy.knowledge.R;
 import com.zmy.knowledge.base.app.BaseFragment;
+import com.zmy.knowledge.github.takephoto.TakePhotoActivity;
 import com.zmy.knowledge.main.adapter.DemoAdapter;
-import com.zmy.knowledge.main.adapter.HomeAdapter;
 import com.zmy.knowledge.utlis.AUtils;
 
 import java.util.ArrayList;
@@ -46,16 +46,16 @@ import butterknife.ButterKnife;
 
 
 /**
- * 首页 topic 列表
+ * github开源项目
  */
-public class SitesListFragment extends BaseFragment {
+public class GithubListFragment extends BaseFragment {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    public static SitesListFragment newInstance() {
+    public static GithubListFragment newInstance() {
         Bundle args = new Bundle();
-        SitesListFragment fragment = new SitesListFragment();
+        GithubListFragment fragment = new GithubListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,12 +72,26 @@ public class SitesListFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        mAdapter = new DemoAdapter(AUtils.getTestData(30));
+
+        List<String> mlist= new ArrayList<>();
+        mlist.add("TakePhoto \n 一款用于在Android设备上获取照片（拍照或从相册、文件中选择）、裁剪图片、压缩图片的开源工具库 ");
+        mAdapter = new DemoAdapter(mlist);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         recyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (position)
+                {
+                    case 0://takePhoto
+                        startActivity(new Intent(getActivity(),TakePhotoActivity.class));
+                        break;
+                }
+            }
+        });
     }
 
     /**

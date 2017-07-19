@@ -234,6 +234,20 @@ public class AUtils {
                 .show();
     }
 
+    public static int getW(Activity context) {
+        WindowManager wm = context.getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+
+        return width;
+    }
+
+    public static int getH(Activity context) {
+        WindowManager wm = context.getWindowManager();
+        int height = wm.getDefaultDisplay().getHeight();
+
+        return height;
+    }
+
     /**
      * 字体库
      */
@@ -492,20 +506,20 @@ public class AUtils {
      * 打印所有cookie
      */
     public static String getCookieValue() {
-        String value="";
+        String value = "";
         CookieJarImpl cookieJar = OkGo.getInstance().getCookieJar();
         CookieStore cookieStore = cookieJar.getCookieStore();
         List<Cookie> allCookie = cookieStore.getAllCookie();
         for (Cookie c : allCookie) {
-            if("DomAuthSessId".equals(c.name())){
-                value =c.name()+"="+c.value();
+            if ("DomAuthSessId".equals(c.name())) {
+                value = c.name() + "=" + c.value();
                 break;
             }
         }
         return value;
     }
 
-    public static void logCookie(){
+    public static void logCookie() {
         CookieJarImpl cookieJar = OkGo.getInstance().getCookieJar();
         CookieStore cookieStore = cookieJar.getCookieStore();
         List<Cookie> allCookie = cookieStore.getAllCookie();
@@ -578,9 +592,9 @@ public class AUtils {
 
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
-                }else {
+                } else {
                     String s = Environment.getExternalStorageDirectory() + "/" + split[1];
-                    Log.e("path=",  s);
+                    Log.e("path=", s);
                     return s;
                 }
             }
@@ -686,5 +700,13 @@ public class AUtils {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
     }
 
+
+    /**
+     * 测试和坑
+     */
+    public static void testAndGroup() {
+        String args = new String("rags");
+
+    }
 
 }

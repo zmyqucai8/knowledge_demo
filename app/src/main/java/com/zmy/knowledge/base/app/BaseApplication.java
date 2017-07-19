@@ -35,6 +35,7 @@ import android.util.Log;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.github.tamir7.contacts.Contacts;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.EaseUI;
@@ -67,6 +68,11 @@ public class BaseApplication extends Application {
         initOKGo();
         initHX();
         initX5();
+        initConstanc();
+    }
+
+    private void initConstanc() {
+        Contacts.initialize(this);
     }
 
     /**

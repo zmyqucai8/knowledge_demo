@@ -34,6 +34,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowAnimationFrameStats;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -42,6 +43,10 @@ import com.zmy.knowledge.base.app.BaseFragment;
 import com.zmy.knowledge.chat.view.ChatTabActivity;
 import com.zmy.knowledge.contacts.ContactBean;
 import com.zmy.knowledge.contacts.ContactsaActivityDemo;
+import com.zmy.knowledge.main.activity.ChartActivity;
+import com.zmy.knowledge.main.activity.DaoTest;
+import com.zmy.knowledge.main.activity.PdfWordTestActivity;
+import com.zmy.knowledge.main.activity.Test2Activity;
 import com.zmy.knowledge.main.activity.ZhuanChangActivity;
 import com.zmy.knowledge.main.activity.head.HeadActivity;
 import com.zmy.knowledge.main.activity.JsTestActivity;
@@ -49,6 +54,7 @@ import com.zmy.knowledge.main.activity.SDTestActivity;
 import com.zmy.knowledge.main.activity.TransparentActivityDemo;
 import com.zmy.knowledge.main.activity.DrawingBoardActivityDemo;
 import com.zmy.knowledge.main.adapter.DemoAdapter;
+import com.zmy.knowledge.main.widget.MsgPop;
 import com.zmy.knowledge.upload.UploadActivity;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
@@ -115,13 +121,17 @@ public class DemosListFragment extends BaseFragment {
         mDemo.add("WebX5内核浏览器");
         mDemo.add("WebX5内核浏览器22222");
         mDemo.add("5.0 之前的转场动画");
+        mDemo.add("pdf Excel word");
+        mDemo.add("dao test");
+        mDemo.add("图表");
+
+
         mAdapter = new DemoAdapter(mDemo);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         //添加头部
-
         TextView head = new TextView(getActivity());
         head.setText("头部哦");
         head.setPadding(50, 50, 50, 50);
@@ -152,15 +162,7 @@ public class DemosListFragment extends BaseFragment {
                         break;
                     case 4:
                         //查询通讯录
-                        AUtils.log("方法开始时间=" + System.currentTimeMillis());
-                        long l = System.currentTimeMillis();
-                        List<ContactBean> contact = AUtils.getContact(getContext());
-                        for (ContactBean c : contact) {
-                            AUtils.log(c.toString());
-                        }
-                        AUtils.log("方法结束时间=" + System.currentTimeMillis());
-                        long l1 = System.currentTimeMillis();
-                        AUtils.log("方法用时" + (l1 - l));
+                        startActivity(new Intent(getContext(), Test2Activity.class));
                         break;
                     case 5://上传
                         startActivity(new Intent(getContext(), UploadActivity.class));
@@ -186,11 +188,54 @@ public class DemosListFragment extends BaseFragment {
                     case 12:
                         startActivity(new Intent(getContext(), ZhuanChangActivity.class));
                         break;
+                    case 13:
+                        startActivity(new Intent(getContext(), PdfWordTestActivity.class));
+                        break;
+                    case 14:
+                        startActivity(new Intent(getContext(), DaoTest.class));
+                        break;
+                    case 15:
+                        startActivity(new Intent(getContext(), ChartActivity.class));
+                        break;
 
                 }
             }
         });
+
+
+        mAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, final int position) {
+                msgPop = new MsgPop(getActivity(), new MsgPop.onClickListener() {
+                    @Override
+                    public void onTopClick() {
+                        AUtils.showToast("置顶" + position);
+                        AUtils.log("切换的时候这里是有问题的。");
+                    }
+
+                    @Override
+                    public void onDeleteClick() {
+                        AUtils.showToast("删除" + position);
+                    }
+                });
+                msgPop.show(view, position);
+                return true;
+            }
+        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (null != msgPop) {
+                    msgPop.dismiss();
+                }
+            }
+        });
+
+
     }
+
+    MsgPop msgPop;
 
     /**
      * 返回顶部
