@@ -23,6 +23,7 @@
 package com.zmy.knowledge.main.fragment;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -38,6 +39,12 @@ import android.view.WindowAnimationFrameStats;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hyphenate.chat.EMClient;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.mabeijianxi.smallvideorecord2.Log;
 import com.zmy.knowledge.R;
 import com.zmy.knowledge.base.app.BaseFragment;
 import com.zmy.knowledge.chat.view.ChatTabActivity;
@@ -47,6 +54,7 @@ import com.zmy.knowledge.main.activity.ChartActivity;
 import com.zmy.knowledge.main.activity.DaoTest;
 import com.zmy.knowledge.main.activity.PdfWordTestActivity;
 import com.zmy.knowledge.main.activity.Test2Activity;
+import com.zmy.knowledge.main.activity.VideoActivity;
 import com.zmy.knowledge.main.activity.ZhuanChangActivity;
 import com.zmy.knowledge.main.activity.head.HeadActivity;
 import com.zmy.knowledge.main.activity.JsTestActivity;
@@ -58,6 +66,8 @@ import com.zmy.knowledge.main.widget.MsgPop;
 import com.zmy.knowledge.upload.UploadActivity;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
+import com.zmy.knowledge.video.MainActivity;
+import com.zmy.knowledge.video.test.TestVideoActivity;
 import com.zmy.knowledge.webx5.ActivityX5;
 import com.zmy.knowledge.webx5.X5TestActivity;
 
@@ -124,6 +134,9 @@ public class DemosListFragment extends BaseFragment {
         mDemo.add("pdf Excel word");
         mDemo.add("dao test");
         mDemo.add("图表");
+        mDemo.add("打开相册选择");
+        mDemo.add("拍摄测试");
+        mDemo.add("视频压缩测试");
 
 
         mAdapter = new DemoAdapter(mDemo);
@@ -142,6 +155,9 @@ public class DemosListFragment extends BaseFragment {
             @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                mAdapter.notifyItemChanged(position);
+
                 switch (position) {
                     case 0: //你画我猜
                         startActivity(new Intent(getContext(), DrawingBoardActivityDemo.class));
@@ -197,7 +213,15 @@ public class DemosListFragment extends BaseFragment {
                     case 15:
                         startActivity(new Intent(getContext(), ChartActivity.class));
                         break;
-
+                    case 16:
+                        startActivity(new Intent(getContext(), VideoActivity.class));
+                        break;
+                    case 17:
+                        startActivity(new Intent(getContext(), TestVideoActivity.class));
+                        break;
+                    case 18:
+                        startActivity(new Intent(getContext(), MainActivity.class));
+                        break;
                 }
             }
         });
@@ -235,6 +259,7 @@ public class DemosListFragment extends BaseFragment {
 
     }
 
+
     MsgPop msgPop;
 
     /**
@@ -249,5 +274,24 @@ public class DemosListFragment extends BaseFragment {
     //这个是回到顶部
     public static void main(String args) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
+                    // 例如 LocalMedia 里面返回两种path
+                    // 1.media.getPath(); 为原图path
+                    // 2.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
+
+                    String path = selectList.get(0).getPath();
+                    Log.e("路径", path);
+                    break;
+            }
+        }
     }
 }

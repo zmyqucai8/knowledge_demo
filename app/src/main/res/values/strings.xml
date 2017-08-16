@@ -506,5 +506,24 @@
     <string name="text_about">百度Push Android SDK 4.6.3\n\n更新时间:2016年5月11日\nChange Log：\n修复低端机器上WebView加载时可能的安全隐患。\n修复特殊场景下Push无法后台自启动的bug。\n暂停PushKeepAlive机制，防止小米部分机器上异常情况下的焦点丢失。</string>
     <string name="text_help">百度hi官方技术讨论群：1405944\nQQ群：324533810（可加）\n云推送微信公众账号：云推送（微信号：baidu-push）\n</string>
 
+
+
+    <string-array name="velocity">
+        <item>none</item>
+        <item>ultrafast</item>
+        <item>superfast</item>
+        <item>veryfast</item>
+        <item>faster</item>
+        <item>fast</item>
+        <item>medium</item>
+        <item>slow</item>
+        <item>slower</item>
+        <item>veryslow</item>
+        <item>placebo</item>
+    </string-array>
+    <string-array name="need_full">
+        <item>false</item>
+        <item>true</item>
+    </string-array>
 </resources>
 

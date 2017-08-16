@@ -20,11 +20,16 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowAnimationFrameStats;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.mabeijianxi.smallvideorecord2.Log;
 import com.zmy.knowledge.R;
 import com.zmy.knowledge.SettingActivity;
 import com.zmy.knowledge.base.app.BaseActivity;
@@ -36,6 +41,7 @@ import com.zmy.knowledge.main.fragment.HomeListFragment;
 import com.zmy.knowledge.utlis.AUtils;
 import com.zmy.knowledge.utlis.PermissionUtils;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -59,6 +65,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initMenu(holder);
         initViewPager(holder);
         initPush();
+
+        testBadge();
+    }
+
+    private void testBadge() {
     }
 
 
@@ -238,12 +249,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 
     boolean isExit = false;//返回的tag
+    Timer tExit = null;
 
     /**
      * 再按一次返回桌面
      */
     private void exitBy2Click() {
-        Timer tExit = null;
+
         if (isExit == false) {
             isExit = true; // 准备退出
             AUtils.showToast("再按一次返回桌面");
@@ -256,9 +268,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             }, 2000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
 
         } else {
-
             Intent intent = new Intent(Intent.ACTION_MAIN, null);
             intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
 //            Intent intent = new Intent(this, TransparentActivityDemo.class);
 //            startActivity(intent);
         }
@@ -273,6 +285,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e("onActivityResult", requestCode+"");
         if (resultCode == RESULT_OK && requestCode == 1) {
             Uri contactData = data.getData();
             Cursor cursor = managedQuery(contactData, null, null, null,
@@ -281,7 +294,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             String num = this.getContactPhone(cursor);
             AUtils.showNotification(this, "所选手机号为：" + num, R.id.content_main);
         }
-    }
+
+
+        }
+
+
 
 
     private String getContactPhone(Cursor cursor) {
@@ -331,7 +348,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     public static void main(String[] args) {
         /**
-         前尘往事成云烟 ， 消散在彼此眼前 ，
+
          前尘往事成云烟， 消散在彼此眼前
          就连说过了再见， 也看不见你有些哀怨
          给我的一切 ， 你不过是在敷衍
@@ -344,7 +361,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
          说过的话不可能会实现
          就在一转眼 发现你的脸
          已经陌生不会再像从前
-        我的世界开始下雪
+         我的世界开始下雪
          冷的让我无法多爱一天
          冷得连隐藏的遗憾 都那么地明显
          我和你吻别 在无人的街

@@ -104,7 +104,7 @@ public class ViewHolder  {
         String url2 = url;
         if (url.contains("diycode"))
             url2 = url.replace("large_avatar", "avatar");
-        Glide.with(context).load(url2).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+//        Glide.with(context).load(url2).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
     }
 
     /**

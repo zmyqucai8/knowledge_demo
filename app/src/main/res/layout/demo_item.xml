@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:background="@drawable/item_select"
     android:orientation="vertical">
 
+
+    <com.sunfusheng.glideimageview.GlideImageView
+        android:id="@+id/img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        app:siv_shape_type="circle" />
 
     <TextView
         android:id="@+id/tv_text"
@@ -17,4 +27,13 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/bg_gray" />
-</LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:scaleType="centerCrop"
+    android:id="@+id/img2"
+        android:visibility="gone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+       />
+</RelativeLayout>

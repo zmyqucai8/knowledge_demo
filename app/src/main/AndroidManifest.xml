@@ -46,6 +46,15 @@
         android:name="baidu.push.permission.WRITE_PUSHINFOPROVIDER.com.zmy.knowledge"
         android:protectionLevel="normal"></permission>
 
+    <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+    </provider>
     <!-- push结束 -->
     <application
         android:name=".base.app.BaseApplication"
@@ -61,6 +70,21 @@
 
 
         </activity>
+
+        <activity
+            android:name=".video.MainActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".video.VideoPlayerActivity"
+
+
+            />
+        <activity android:name="com.mabeijianxi.smallvideorecord2.MediaRecorderActivity"
+
+            />
+        <activity android:name=".video.SendSmallVideoActivity" />
+
+        <activity android:name=".video.test.TestVideoActivity"/>
+        <activity android:name="com.mabeijianxi.smallvideorecord2.MediaRecorderActivity" />
         <activity android:name=".webx5.X5TestActivity" />
         <activity android:name=".contacts.ContactsaActivityDemo" />
         <activity android:name=".main.activity.DrawingBoardActivityDemo" />
@@ -73,6 +97,7 @@
                 <category android:name="android.intent.category.MONKEY" />
             </intent-filter>
         </activity>
+
 
         <activity android:name=".main.activity.ZhuanChangActivity" />
         <activity android:name=".main.activity.ZhuanChangActivity2" />
@@ -115,20 +140,24 @@
 
         </activity>
 
-        <activity android:name=".github.takephoto.SimpleActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
-        <activity android:name=".github.takephoto.SimpleFragmentActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"></activity>
+        <activity
+            android:name=".github.takephoto.SimpleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".github.takephoto.SimpleFragmentActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".github.takephoto.ResultActivity"></activity>
         <activity android:name=".main.activity.DaoTest" />
         <activity android:name=".main.activity.Test2Activity" />
         <activity android:name=".main.activity.PdfWordTestActivity" />
+        <activity android:name=".main.activity.VideoActivity" />
 
-        <activity android:name=".github.takephoto.TakePhotoActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".github.takephoto.TakePhotoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".main.activity.PdfActivity" />
 
